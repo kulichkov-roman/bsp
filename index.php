@@ -114,7 +114,7 @@ $APPLICATION->SetTitle("Интернет-магазин продукции Bosch
 		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "ASC"
 	)
-);?> <a class="detail_picture fancybox" target="_blank" href="/upload/medialibrary/aa3/Сертификат%20Бош.jpg"> <img width="180px" src="/upload/medialibrary/af6/Сертификат%20Бош2.jpg"></a><br>
+);?> <a class="detail_picture fancybox" target="_blank" href="/images/sert54.jpg"> <img width="180px" src="/images/sert54.jpg"></a><br>
  <a class="detail_picture fancybox" target="_blank" href="http://bosch-pro.ru/waranty/"> <img width="180px" src="/upload/medialibrary/941/BOSCH3.jpg"></a>
 	</td>
 	<td>
