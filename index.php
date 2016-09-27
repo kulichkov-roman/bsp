@@ -118,71 +118,161 @@ $APPLICATION->SetTitle("Интернет-магазин продукции Bosch
  <a class="detail_picture fancybox" target="_blank" href="http://bosch-pro.ru/waranty/"> <img width="180px" src="/upload/medialibrary/941/BOSCH3.jpg"></a>
 	</td>
 	<td>
-		 <?$GLOBALS["arrTopFilter"] = array('SECTION_ID' => 2408, 'INCLUDE_SUBSECTIONS' => 'Y', '!PROPERTY_HIT' => false); ?> <?$APPLICATION->IncludeComponent(
-	"bitrix:catalog.top", 
-	"shop", 
-	array(
-		"ACTION_VARIABLE" => "action",
-		"ADD_PROPERTIES_TO_BASKET" => "Y",
-		"BASKET_URL" => "/personal/basket.php",
-		"CACHE_FILTER" => "N",
-		"CACHE_GROUPS" => "Y",
-		"CACHE_TIME" => "36000000",
-		"CACHE_TYPE" => "A",
-		"COMPONENT_TEMPLATE" => "shop",
-		"CONVERT_CURRENCY" => "N",
-		"DETAIL_URL" => "catalog/#SECTION_ID#/#ELEMENT_ID#/",
-		"DISPLAY_COMPARE" => "N",
-		"ELEMENT_COUNT" => "24",
-		"ELEMENT_SORT_FIELD" => "RAND",
-		"ELEMENT_SORT_FIELD2" => "id",
-		"ELEMENT_SORT_ORDER" => "asc",
-		"ELEMENT_SORT_ORDER2" => "desc",
-		"FILTER_NAME" => "arrTopFilter",
-		"HIDE_NOT_AVAILABLE" => "N",
-		"IBLOCK_ID" => "16",
-		"IBLOCK_TYPE" => "aspro_ishop_catalog",
-		"LINE_ELEMENT_COUNT" => "4",
-		"OFFERS_CART_PROPERTIES" => array(
-			0 => "CML2_LINK",
-		),
-		"OFFERS_FIELD_CODE" => array(
-			0 => "ID",
-			1 => "CODE",
-		),
-		"OFFERS_LIMIT" => "6",
-		"OFFERS_PROPERTY_CODE" => array(
-			0 => "CML2_LINK",
-		),
-		"OFFERS_SORT_FIELD" => "sort",
-		"OFFERS_SORT_ORDER" => "asc",
-		"PARTIAL_PRODUCT_PROPERTIES" => "N",
-		"PRICE_CODE" => array(
-			0 => "BASE",
-		),
-		"PRICE_VAT_INCLUDE" => "Y",
-		"PRODUCT_ID_VARIABLE" => "id",
-		"PRODUCT_PROPERTIES" => array(
-		),
-		"PRODUCT_PROPS_VARIABLE" => "prop",
-		"PRODUCT_QUANTITY_VARIABLE" => "quantity",
-		"PROPERTY_CODE" => array(
-			0 => "HIT",
-			1 => "RECOMMEND",
-			2 => "NEW",
-			3 => "STOCK",
-			4 => "",
-		),
-		"SECTION_ID_VARIABLE" => "SECTION_ID",
-		"SECTION_URL" => "catalog/#SECTION_ID#/",
-		"SEF_MODE" => "N",
-		"SHOW_MEASURE" => "N",
-		"SHOW_PRICE_COUNT" => "1",
-		"USE_PRICE_COUNT" => "N",
-		"USE_PRODUCT_QUANTITY" => "N"
-	),
-	false
-);?>
+		<div class="tabs-wrapper">
+			<ul class="tabs-links">
+				<li>
+					<a href="#id-1">Хиты продаж</a>
+				</li>
+				<li>
+					<a href="#id-2">Новинки</a>
+				</li>
+			</ul>
+			<div id="id-1" class="tab-item">
+				<?$GLOBALS["arrHitFilter"] = array(
+					'SECTION_ID' => 2408,
+					'INCLUDE_SUBSECTIONS' => 'Y',
+					'!PROPERTY_HIT' => false
+				);
+				?>
+				<?$APPLICATION->IncludeComponent(
+					"bitrix:catalog.top",
+					"shop",
+					array(
+						"ACTION_VARIABLE" => "action",
+						"ADD_PROPERTIES_TO_BASKET" => "Y",
+						"BASKET_URL" => "/personal/basket.php",
+						"CACHE_FILTER" => "N",
+						"CACHE_GROUPS" => "Y",
+						"CACHE_TIME" => "36000000",
+						"CACHE_TYPE" => "A",
+						"COMPONENT_TEMPLATE" => "shop",
+						"CONVERT_CURRENCY" => "N",
+						"DETAIL_URL" => "catalog/#SECTION_ID#/#ELEMENT_ID#/",
+						"DISPLAY_COMPARE" => "N",
+						"ELEMENT_COUNT" => "24",
+						"ELEMENT_SORT_FIELD" => "RAND",
+						"ELEMENT_SORT_FIELD2" => "id",
+						"ELEMENT_SORT_ORDER" => "asc",
+						"ELEMENT_SORT_ORDER2" => "desc",
+						"FILTER_NAME" => "arrHitFilter",
+						"HIDE_NOT_AVAILABLE" => "N",
+						"IBLOCK_ID" => "16",
+						"IBLOCK_TYPE" => "aspro_ishop_catalog",
+						"LINE_ELEMENT_COUNT" => "4",
+						"OFFERS_CART_PROPERTIES" => array(
+							0 => "CML2_LINK",
+						),
+						"OFFERS_FIELD_CODE" => array(
+							0 => "ID",
+							1 => "CODE",
+						),
+						"OFFERS_LIMIT" => "6",
+						"OFFERS_PROPERTY_CODE" => array(
+							0 => "CML2_LINK",
+						),
+						"OFFERS_SORT_FIELD" => "sort",
+						"OFFERS_SORT_ORDER" => "asc",
+						"PARTIAL_PRODUCT_PROPERTIES" => "N",
+						"PRICE_CODE" => array(
+							0 => "BASE",
+						),
+						"PRICE_VAT_INCLUDE" => "Y",
+						"PRODUCT_ID_VARIABLE" => "id",
+						"PRODUCT_PROPERTIES" => array(
+						),
+						"PRODUCT_PROPS_VARIABLE" => "prop",
+						"PRODUCT_QUANTITY_VARIABLE" => "quantity",
+						"PROPERTY_CODE" => array(
+							0 => "HIT",
+							1 => "RECOMMEND",
+							2 => "NEW",
+							3 => "STOCK",
+							4 => "",
+						),
+						"SECTION_ID_VARIABLE" => "SECTION_ID",
+						"SECTION_URL" => "catalog/#SECTION_ID#/",
+						"SEF_MODE" => "N",
+						"SHOW_MEASURE" => "N",
+						"SHOW_PRICE_COUNT" => "1",
+						"USE_PRICE_COUNT" => "N",
+						"USE_PRODUCT_QUANTITY" => "N"
+					),
+					false
+				);?>
+			</div>
+			<div id="id-2" class="tab-item">
+				<?$GLOBALS["arrNewFilter"] = array(
+					'INCLUDE_SUBSECTIONS' => 'Y',
+					'!PROPERTY_NEW' => false
+				);
+				?>
+				<?$APPLICATION->IncludeComponent(
+					"bitrix:catalog.top",
+					"shop",
+					array(
+						"ACTION_VARIABLE" => "action",
+						"ADD_PROPERTIES_TO_BASKET" => "Y",
+						"BASKET_URL" => "/personal/basket.php",
+						"CACHE_FILTER" => "N",
+						"CACHE_GROUPS" => "Y",
+						"CACHE_TIME" => "36000000",
+						"CACHE_TYPE" => "A",
+						"COMPONENT_TEMPLATE" => "shop",
+						"CONVERT_CURRENCY" => "N",
+						"DETAIL_URL" => "catalog/#SECTION_ID#/#ELEMENT_ID#/",
+						"DISPLAY_COMPARE" => "N",
+						"ELEMENT_COUNT" => "24",
+						"ELEMENT_SORT_FIELD" => "RAND",
+						"ELEMENT_SORT_FIELD2" => "id",
+						"ELEMENT_SORT_ORDER" => "asc",
+						"ELEMENT_SORT_ORDER2" => "desc",
+						"FILTER_NAME" => "arrNewFilter",
+						"HIDE_NOT_AVAILABLE" => "N",
+						"IBLOCK_ID" => "16",
+						"IBLOCK_TYPE" => "aspro_ishop_catalog",
+						"LINE_ELEMENT_COUNT" => "4",
+						"OFFERS_CART_PROPERTIES" => array(
+							0 => "CML2_LINK",
+						),
+						"OFFERS_FIELD_CODE" => array(
+							0 => "ID",
+							1 => "CODE",
+						),
+						"OFFERS_LIMIT" => "6",
+						"OFFERS_PROPERTY_CODE" => array(
+							0 => "CML2_LINK",
+						),
+						"OFFERS_SORT_FIELD" => "sort",
+						"OFFERS_SORT_ORDER" => "asc",
+						"PARTIAL_PRODUCT_PROPERTIES" => "N",
+						"PRICE_CODE" => array(
+							0 => "BASE",
+						),
+						"PRICE_VAT_INCLUDE" => "Y",
+						"PRODUCT_ID_VARIABLE" => "id",
+						"PRODUCT_PROPERTIES" => array(
+						),
+						"PRODUCT_PROPS_VARIABLE" => "prop",
+						"PRODUCT_QUANTITY_VARIABLE" => "quantity",
+						"PROPERTY_CODE" => array(
+							0 => "HIT",
+							1 => "RECOMMEND",
+							2 => "NEW",
+							3 => "STOCK",
+							4 => "",
+						),
+						"SECTION_ID_VARIABLE" => "SECTION_ID",
+						"SECTION_URL" => "catalog/#SECTION_ID#/",
+						"SEF_MODE" => "N",
+						"SHOW_MEASURE" => "N",
+						"SHOW_PRICE_COUNT" => "1",
+						"USE_PRICE_COUNT" => "N",
+						"USE_PRODUCT_QUANTITY" => "N"
+					),
+					false
+				);?>
+			</div>
+		</div>
 	</td>
 </tr>
 </tbody>
