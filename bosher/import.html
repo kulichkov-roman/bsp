@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/jquery-2.2.2.min.js"></script>
+    <script src="js/logic.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        Загрузка каталога Bosh
+    </div>
+
+    <div class="block">
+        <div class="load-block">
+            <button class="btn" id="main-btn">
+                Загрузить
+            </button>
+        </div>
+        <div class="flow">
+            <div class="title">Процесс импорта</div>
+            <div class="flow-item active" id="block_1_state_1">
+                <div class="status wait"><i class="fa fa-hourglass-o"></i></div>
+                <span class="flow-number">1.</span>
+                Импорт категорий товаров
+                <div class="progress">Загружено: <span class="value">N/A</span></div>
+            </div>
+
+            <div class="flow-item" id="block_1_state_2">
+                <div class="status wait"><i class="fa fa-hourglass-o"></i></div>
+                <span class="flow-number">2.</span>
+                Импорт товаров
+                <div class="progress">Загружено: <span class="value">N/A</span></div>
+            </div>
+
+            <div class="flow-item" id="block_1_state_3">
+                <div class="status wait"><i class="fa fa-hourglass-o"></i></div>
+                <span class="flow-number">3.</span>
+                Привязка товаров к категориям
+                <div class="progress">Загружено: <span class="value">N/A</span></div>
+            </div>
+
+            <div class="flow-item" id="block_1_state_4">
+                <div class="status wait"><i class="fa fa-hourglass-o"></i></div>
+                <span class="flow-number">4.</span>
+                Выгрузка цен товаров
+                <div class="progress">Загружено: <span class="value">N/A</span></div>
+            </div>
+
+            <div class="flow-item" id="block_2_state_1">
+                <div class="status wait"><i class="fa fa-hourglass-o"></i></div>
+                <span class="flow-number">5.</span>
+                Импорт категорий аксессуаров
+                <div class="progress">Загружено: <span class="value">N/A</span></div>
+            </div>
+
+            <div class="flow-item" id="block_2_state_2">
+                <div class="status wait"><i class="fa fa-hourglass-o"></i></div>
+                <span class="flow-number">6.</span>
+                Импорт аксессуаров
+                <div class="progress">Загружено: <span class="value">N/A</span></div>
+            </div>
+
+            <div class="flow-item" id="block_2_state_3">
+                <div class="status wait"><i class="fa fa-hourglass-o"></i></div>
+                <span class="flow-number">7.</span>
+                Привязка аксессуаров к категориям
+                <div class="progress">Загружено: <span class="value">N/A</span></div>
+            </div>
+
+            <div class="flow-item" id="block_2_state_4">
+                <div class="status wait"><i class="fa fa-hourglass-o"></i></div>
+                <span class="flow-number">8.</span>
+                Выгрузка цен аксессуаров
+                <div class="progress">Загружено: <span class="value">N/A</span></div>
+            </div>
+            <div class="flow-item" id="block_2_state_5">
+                <div class="status wait"><i class="fa fa-hourglass-o"></i></div>
+                <span class="flow-number">9.</span>
+                Привязка аксессуаров к товарам
+                <div class="progress">Загружено: <span class="value">N/A</span></div>
+            </div>
+            <div class="flow-item" id="block_3_state_4">
+                <div class="status wait"><i class="fa fa-hourglass-o"></i></div>
+                <span class="flow-number">10.</span>
+                Выгрузка цен измерительной техники
+                <div class="progress">Загружено: <span class="value">N/A</span></div>
+            </div>
+        </div>
+
+        <div class="flow">
+            <div class="title">Лог импорта</div>
+            <div class="log-list" id="log">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
