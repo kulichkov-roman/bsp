@@ -29,14 +29,16 @@ while($arElement = $dbElem->Fetch()) {
 }
 
 $filename = 'files/Pricelist_MT_PRO.xlsx';
+
 $excel = PHPExcel_IOFactory::load(dirname(__FILE__) . '/' . $filename);
+
 $excel->setActiveSheetIndex(0);
 $sheet = $excel->getActiveSheet();
 $count = 0;
 $lastRow = $sheet->getHighestRow();
 
 for($i = 1; $i <= $lastRow; $i++) {
-    $xmlId = $sheet->getCell("C$i")->getValue();
+    $xmlId = $sheet->getCell("A$i")->getValue();
 
     if(!$xmlId) {
         continue;
@@ -47,7 +49,7 @@ for($i = 1; $i <= $lastRow; $i++) {
     }
 
     $productId = $productMap[$xmlId];
-    $price = str_replace(',', '.', $sheet->getCell("F$i")->getValue());
+    $price = str_replace(',', '.', $sheet->getCell("B$i")->getValue());
 
     $updated = false;
     $dbPrice = \CPrice::GetList([], ["PRODUCT_ID" => $productId]);

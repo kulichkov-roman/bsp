@@ -12,7 +12,7 @@ var controller = {
         3 : 'assocPosition'
     },
 
-    stepMax: 9,
+    stepMax: 8,
     iter: 0,
 
     run : function() {
@@ -34,6 +34,9 @@ var controller = {
         if(self.params.block == 2) {
             scriptName = "import_accessories.php";
         }
+
+        console.log(self.params.block + 'b');
+        console.log(self.params.state + 's');
 
         $.getJSON(scriptName, self.params, function(data) {
             var $stateBlock = $("#block_" + self.params.block + "_state_" + self.params.state);
@@ -72,12 +75,19 @@ var controller = {
 
         var scriptName = "import_prices.php";
         if(self.params.block == 2) {
+            scriptName = "import_prices_acs.php";
+        } else if(self.params.block == 3) {
             scriptName = "import_prices_mt.php";
         }
 
         $.getJSON(scriptName, function(data) {
+
             var $stateBlock = $("#block_" + self.params.block + "_state_" + self.params.state);
             $stateBlock.find('.value').text(data['count']);
+
+            $stateBlock.find(".status").removeClass("wait").addClass("success").html('<i class="fa fa-check"></i>');
+            $stateBlock.removeClass('active');
+            $("#state_" + data.state).addClass('active');
 
             if(self.params.block == 1) {
                 self.params.block = 2;
@@ -87,8 +97,16 @@ var controller = {
 
                 self.catalogImport();
             } else {
-                self.params.state = 5;
-                self.accessoriesAssoc();
+                if(self.params.block == 2 && self.params.state == 4)
+                {
+                    self.params.block = 3;
+                    self.params.state = 4;
+                    self.priceImport();
+                } else {
+                    self.params.block = 2;
+                    self.params.state = 5;
+                    self.accessoriesAssoc();
+                }
             }
         });
     },
@@ -98,7 +116,14 @@ var controller = {
 
         $.getJSON("import_accessories_assoc.php", function(data) {
             var $stateBlock = $("#block_" + self.params.block + "_state_" + self.params.state);
+
+            console.log($stateBlock);
+
             $stateBlock.find('.value').text(data['count']);
+
+            $stateBlock.find(".status").removeClass("wait").addClass("success").html('<i class="fa fa-check"></i>');
+            $stateBlock.removeClass('active');
+            $("#state_" + data.state).addClass('active');
 
             $("#main-btn").html('Загрузка завершена <i class="fa fa-check"></i>');
         });
