@@ -35,9 +35,6 @@ var controller = {
             scriptName = "import_accessories.php";
         }
 
-        console.log(self.params.block + 'b');
-        console.log(self.params.state + 's');
-
         $.getJSON(scriptName, self.params, function(data) {
             var $stateBlock = $("#block_" + self.params.block + "_state_" + self.params.state);
             $stateBlock.find('.value').text(data[self.stateCounters[self.params.state]]);
@@ -116,8 +113,6 @@ var controller = {
 
         $.getJSON("import_accessories_assoc.php", function(data) {
             var $stateBlock = $("#block_" + self.params.block + "_state_" + self.params.state);
-
-            console.log($stateBlock);
 
             $stateBlock.find('.value').text(data['count']);
 
