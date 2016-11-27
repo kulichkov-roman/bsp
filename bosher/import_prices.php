@@ -77,8 +77,6 @@ for($i = 1; $i <= $lastRow; $i++) {
     $count++;
 }
 
-//$count = 100;
-
 echo json_encode([
    'count' => $count
 ]);

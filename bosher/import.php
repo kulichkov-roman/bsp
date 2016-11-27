@@ -27,11 +27,3 @@ echo json_encode([
     'sectionCount' => $state->getSectionCount(),
     'messages' => $state->getMessages(),
 ]);
-
-//echo json_encode([
-//    'state' => 4,
-//    'productPosition' => 0,
-//    'assocPosition' => 0,
-//    'sectionCount' => 100,
-//    'messages' => [],
-//]);

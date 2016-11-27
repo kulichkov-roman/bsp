@@ -33,8 +33,6 @@ while($arItem = $dbRes->GetNext()) {
     }
 }
 
-//$resCount = 100;
-
 echo json_encode([
    'count' => $resCount
 ]);
