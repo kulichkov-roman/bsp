@@ -299,14 +299,18 @@ class BoshImport {
             }
 
         } else {
-            $res = $el->Update($elementId, $arFields);
+
+            /*
+             * Не перезаписывать свойства, которых нет в импорте.
+             * */
+            \CIBlockElement::SetPropertyValuesEx(
+                $elementId,
+                CatalogData::IBLOCK_ID,
+                $arFields
+            );
 
             if(in_array($elementId, CatalogData::$catalogMap) === false) {
                 $this->addCatalogProduct($elementId);
-            }
-
-            if($res === false) {
-                $this->state->addMessage("Ошибка при обновлении товара #$elementId: $el->LAST_ERROR");
             }
         }
 
