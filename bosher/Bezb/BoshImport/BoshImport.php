@@ -77,6 +77,36 @@ class BoshImport {
         }
     }
 
+    /**
+     * Модифицировать данные разделов
+     *
+     * @param $arFields
+     *
+     * @return mixed
+     *
+     * @todo переделать текущий метод на обновление разделов
+     */
+    public function parseModifierSections($arFields)
+    {
+        /*
+         * Переименовать раздел "Домашние мастерские/промышленное производство" в "Профессиональные инструменты"
+         * */
+        if($arFields['XML_ID'] == '101272')
+        {
+            $arFields['NAME'] = 'Профессиональные инструменты';
+        }
+
+        /*
+         * Раздел "Измерительная техника" поместить в корень каталога
+         */
+        elseif($arFields['XML_ID'] == '101299')
+        {
+            $arFields['IBLOCK_SECTION_ID'] = false;
+        }
+
+        return $arFields;
+    }
+
     public function parseSections() {
         CatalogData::buildSectionMap();
 
@@ -131,6 +161,12 @@ class BoshImport {
                 "NAME" => $sectionName,
                 "SORT" => (int) $xmlNode->GROUP_ORDER
             );
+
+            /**
+             * @todo вызывать parseModifierSections() на этапе завершения parseSections(),
+             * и parseModifierSections() реализовать через обновление разделов
+             */
+            $arFields = $this->parseModifierSections($arFields);
 
             if($mainImage) {
                 $arFields['PICTURE'] = $mainImage;
@@ -299,14 +335,18 @@ class BoshImport {
             }
 
         } else {
-            $res = $el->Update($elementId, $arFields);
+
+            /*
+             * Не перезаписывать свойства, которых нет в импорте.
+             * */
+            \CIBlockElement::SetPropertyValuesEx(
+                $elementId,
+                CatalogData::IBLOCK_ID,
+                $arFields
+            );
 
             if(in_array($elementId, CatalogData::$catalogMap) === false) {
                 $this->addCatalogProduct($elementId);
-            }
-
-            if($res === false) {
-                $this->state->addMessage("Ошибка при обновлении товара #$elementId: $el->LAST_ERROR");
             }
         }
 
