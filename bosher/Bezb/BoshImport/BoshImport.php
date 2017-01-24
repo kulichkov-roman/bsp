@@ -84,18 +84,17 @@ class BoshImport {
      *
      * @return mixed
      *
-     * @todo переделать текущий метод на обновление разделов
+     * @todo переделать текущий метод на обновление разделов поместить его как отдельный ImportState MODIFIER
      */
     public function parseModifierSections($arFields)
     {
         /*
          * Переименовать раздел "Домашние мастерские/промышленное производство" в "Профессиональные инструменты"
-         * */
+         */
         if($arFields['XML_ID'] == '101272')
         {
             $arFields['NAME'] = 'Профессиональные инструменты';
         }
-
         /*
          * Раздел "Измерительная техника" поместить в корень каталога
          */
@@ -321,8 +320,11 @@ class BoshImport {
             "DETAIL_TEXT"    => (string) $productXml->ARTICLE_DETAILS->DESCRIPTION_LONG,
             "DETAIL_PICTURE" => $mainImage,
             "PREVIEW_PICTURE" => $mainImage,
-            "PROPERTY_VALUES"=> $properties,
         ];
+
+        $arProps = array(
+            $properties,
+        );
 
         if($elementId === null) {
             $elementId = $el->Add($arFields);
@@ -336,18 +338,22 @@ class BoshImport {
 
         } else {
 
-            /*
-             * Не перезаписывать свойства, которых нет в импорте.
-             * */
+            $res = $el->Update($elementId, $arFields);
+
             \CIBlockElement::SetPropertyValuesEx(
                 $elementId,
                 CatalogData::IBLOCK_ID,
-                $arFields
+                $arProps
             );
 
             if(in_array($elementId, CatalogData::$catalogMap) === false) {
                 $this->addCatalogProduct($elementId);
             }
+
+            if($res === false) {
+                $this->state->addMessage("Ошибка при обновлении товара #$elementId: $el->LAST_ERROR");
+            }
+
         }
 
         $this->importCount++;
